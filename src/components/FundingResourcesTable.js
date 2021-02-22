@@ -1,62 +1,55 @@
-import { MDBDataTableV5 } from "mdbreact";
+import MUIDataTable from "mui-datatables";
 import { useState } from "react";
-import '../styles/FundingResourcesTable.css'
+import "../styles/FundingResourcesTable.css";
 
 export default function FundingResourcesTable() {
   const [fundingResourcesTableData, setFundingResourcesTableData] = useState({
     columns: [
       {
         label: "Source",
-        field: "source",
-        width: 150,
-        attributes: {
-          "aria-controls": "DataTable",
-          "aria-label": "Source",
-        },
+        name: "source",
       },
       {
         label: "Funding Name",
-        field: "funding_name",
-        width: 100,
+        name: "funding_name",
       },
       {
         label: "Purpose Of Funding",
-        field: "purpose",
-        width: 300,
+        name: "purpose",
       },
       {
         label: "Max Grant Amount",
-        field: "max",
-        width: 50,
+        name: "max",
       },
       {
         label: "Eligibility Requirements",
-        field: "E_R",
-        width: 150,
+        name: "E_R",
       },
       {
         label: "Deadline",
-        field: "deadline",
-        width: 100,
+        name: "deadline",
       },
       {
         label: "Contact Person",
-        field: "contact",
-        width: 100,
+        name: "contact",
       },
       {
         label: "Physical Location",
-        field: "location",
-        width: 100,
+        name: "location",
       },
       {
         label: "Web Address",
-        field: "web",
-        width: 100,
+        name: "web",
+        options: {
+          customBodyRender: (value, tableMeta, updateValue) => (
+            <a href={value}>Official website</a>
+          ),
+        },
       },
     ],
     rows: [
       {
+        id: 1,
         source: "Wilson Center",
         funding_name: "Wilson Funding",
         purpose:
@@ -70,6 +63,7 @@ export default function FundingResourcesTable() {
           "https://www.grinnell.edu/academics/centers-programs/wilson/funding",
       },
       {
+        id: 2,
         source: "Student Government Association (SGA)",
         funding_name: "-",
         purpose: "-",
@@ -81,6 +75,7 @@ export default function FundingResourcesTable() {
         web: "https://sga.grinnell.edu/money/",
       },
       {
+        id: 3,
         source: "Center for Careers, Life & Service (CLS)",
         funding_name: "Service & Social Innovation Grant",
         purpose:
@@ -96,18 +91,17 @@ export default function FundingResourcesTable() {
     ],
   });
 
+  const options = {
+    // filterType: "checkbox",
+    selectableRows: "none",
+  };
+
   return (
-    <MDBDataTableV5
-      className="resourcesDatatable"
-      hover
-      entriesOptions={[5, 20, 25]}
-      entries={5}
-      pagesAmount={4}
-      data={fundingResourcesTableData}
-      pagingTop
-      searchTop
-      searchBottom={false}
-      materialSearch
+    <MUIDataTable
+      title={"Employee List"}
+      data={fundingResourcesTableData.rows}
+      columns={fundingResourcesTableData.columns}
+      options={options}
     />
   );
 }

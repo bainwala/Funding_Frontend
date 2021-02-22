@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LoginForm() {
+export default function SignUpForm() {
   const classes = useStyles();
 
   return (
@@ -31,6 +31,7 @@ export default function LoginForm() {
                   name="email"
                   size="small"
                   variant="outlined"
+                  type="email"
                   required={true}
                 />
               </Grid>
@@ -39,6 +40,17 @@ export default function LoginForm() {
                   fullWidth
                   label="Password"
                   name="password"
+                  size="small"
+                  type="password"
+                  variant="outlined"
+                  required={true}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="Confirm Password"
+                  name="confirm-password"
                   size="small"
                   type="password"
                   variant="outlined"
@@ -58,8 +70,8 @@ export default function LoginForm() {
             </Button>
           </Grid>
         </Grid>
-        <div style={{marginTop: '1em'}}>
-          Don't have an account? <Link to='/signup'>Create one now.</Link>
+        <div style={{ marginTop: "1em" }}>
+          Already have an account? <Link to='/login'>Log in.</Link>
         </div>
       </form>
     </Container>

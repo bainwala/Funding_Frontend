@@ -2,6 +2,8 @@ import FundingResourcesTable from "./components/FundingResourcesTable";
 import Navbar from "./components/Navbar";
 import LoginForm from "./components/LoginForm";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import SignUpForm from './components/SignUpForm'
+import './styles/App.css'
 
 export default function App() {
   return (
@@ -10,6 +12,7 @@ export default function App() {
       <Switch>
         <Route exact path="/" component={FundingResourcesTable}></Route>
         <Route exact path="/login" component={LoginForm}></Route>
+        <Route exact path="/signup" component={SignUpForm}></Route>
         <Route path="/" render={() => <div>404</div>} />
       </Switch>
     </BrowserRouter>
