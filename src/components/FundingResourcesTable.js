@@ -1,3 +1,4 @@
+import { Button } from "@material-ui/core";
 import MUIDataTable from "mui-datatables";
 import { useState } from "react";
 import "../styles/FundingResourcesTable.css";
@@ -94,11 +95,12 @@ export default function FundingResourcesTable() {
   const options = {
     // filterType: "checkbox",
     selectableRows: "none",
+    customToolbar: ({ displayData }) => <Button>Add a resource</Button>,
   };
 
   return (
     <MUIDataTable
-      title={"Employee List"}
+      title={"Find a funding resource that works for you!"}
       data={fundingResourcesTableData.rows}
       columns={fundingResourcesTableData.columns}
       options={options}
