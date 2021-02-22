@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    cursor: 'pointer'
   },
 }));
 
@@ -37,6 +38,9 @@ export default function ButtonAppBar() {
           <Button onClick={() => {
             history.push('/login')
           }} color="inherit">Login</Button>
+          <Button onClick={() => {
+            history.push('/signup')
+          }} color="inherit">Sign Up</Button>
         </Toolbar>
       </AppBar>
     </div>
