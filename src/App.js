@@ -2,8 +2,8 @@ import FundingResourcesTable from "./components/FundingResourcesTable";
 import Navbar from "./components/Navbar";
 import LoginForm from "./components/LoginForm";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import SignUpForm from './components/SignUpForm'
-import './styles/App.css'
+import SignUpForm from "./components/SignUpForm";
+import "./styles/App.css";
 
 export default function App() {
   return (

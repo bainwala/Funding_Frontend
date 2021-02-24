@@ -58,8 +58,8 @@ export default function LoginForm() {
             </Button>
           </Grid>
         </Grid>
-        <div style={{marginTop: '1em'}}>
-          Don't have an account? <Link to='/signup'>Create one now.</Link>
+        <div style={{ marginTop: "1em" }}>
+          Don't have an account? <Link to="/signup">Create one now.</Link>
         </div>
       </form>
     </Container>

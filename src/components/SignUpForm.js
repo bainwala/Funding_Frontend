@@ -66,12 +66,12 @@ export default function SignUpForm() {
               type="submit"
               variant="contained"
             >
-              Log in
+              Sign up
             </Button>
           </Grid>
         </Grid>
         <div style={{ marginTop: "1em" }}>
-          Already have an account? <Link to='/login'>Log in.</Link>
+          Already have an account? <Link to="/login">Log in.</Link>
         </div>
       </form>
     </Container>

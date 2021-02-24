@@ -10,15 +10,19 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  appBar:{
-    backgroundColor: '#121212'
+  appBar: {
+    backgroundColor: "#121212",
   },
   menuButton: {
     marginRight: theme.spacing(2),
   },
-  title: {
-    flexGrow: 1,
-    cursor: 'pointer'
+  logo: {
+    cursor: "pointer",
+    height: "3em",
+  },
+  menuItems: {
+    position: "fixed",
+    right: 0,
   },
 }));
 
@@ -30,17 +34,33 @@ export default function ButtonAppBar() {
     <div className={classes.root}>
       <AppBar className={classes.appBar} position="static">
         <Toolbar>
-          <Typography onClick={() => {
-            history.push('/')
-          }} variant="h6" className={classes.title}>
-            Grinnell College Funding Resources Directory
-          </Typography>
-          <Button onClick={() => {
-            history.push('/login')
-          }} color="inherit">Login</Button>
-          <Button onClick={() => {
-            history.push('/signup')
-          }} color="inherit">Sign Up</Button>
+          <img
+            alt="logo"
+            src="CFR_Logo.png"
+            className={classes.logo}
+            onClick={() => {
+              history.push("/");
+            }}
+          ></img>
+
+          <div className={classes.menuItems}>
+            <Button
+              onClick={() => {
+                history.push("/login");
+              }}
+              color="inherit"
+            >
+              Login
+            </Button>
+            <Button
+              onClick={() => {
+                history.push("/signup");
+              }}
+              color="inherit"
+            >
+              Sign Up
+            </Button>
+          </div>
         </Toolbar>
       </AppBar>
     </div>
