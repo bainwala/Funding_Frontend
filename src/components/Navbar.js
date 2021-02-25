@@ -54,7 +54,7 @@ export default function ButtonAppBar() {
             </Button>
             <Button
               onClick={() => {
-                history.push("/signup");
+                history.push("/signup1");
               }}
               color="inherit"
             >
