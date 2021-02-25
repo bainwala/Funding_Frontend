@@ -1,8 +1,10 @@
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import axios from "axios";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -17,10 +19,50 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUpForm() {
   const classes = useStyles();
+  const [signUpFormData, setSignUpFormData] = useState({
+    email: "",
+    password: "",
+    password_confirmation: "",
+    registrationErrors: "",
+  });
+
+  const handleChange = (e) => {
+    const tempObj = {};
+    tempObj[e.target.name] = e.target.value;
+    setSignUpFormData((prev) => Object.assign(prev, tempObj));
+    console.log(signUpFormData);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const { email, password, password_confirmation } = signUpFormData;
+
+    console.log(email, password, password_confirmation);
+
+    axios
+      .post(
+        "http://localhost:3001/registrations",
+        {
+          user: {
+            email: email,
+            password: password,
+            password_confirmation: password_confirmation,
+          },
+        },
+        { withCredentials: true }
+      )
+      .then((response) => {
+        console.log("registration res", response);
+      })
+      .catch((error) => {
+        console.log("registration error", error);
+      });
+  };
 
   return (
     <Container className={classes.container} maxWidth="xs">
-      <form>
+      <form onSubmit={handleSubmit}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <Grid container spacing={2}>
@@ -33,6 +75,7 @@ export default function SignUpForm() {
                   variant="outlined"
                   type="email"
                   required={true}
+                  onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -44,17 +87,19 @@ export default function SignUpForm() {
                   type="password"
                   variant="outlined"
                   required={true}
+                  onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   fullWidth
                   label="Confirm Password"
-                  name="confirm-password"
+                  name="password_confirmation"
                   size="small"
                   type="password"
                   variant="outlined"
                   required={true}
+                  onChange={handleChange}
                 />
               </Grid>
             </Grid>

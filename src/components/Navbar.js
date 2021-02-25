@@ -1,9 +1,8 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core/styles";
+import Toolbar from "@material-ui/core/Toolbar";
+import React from "react";
 import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -54,7 +53,7 @@ export default function ButtonAppBar() {
             </Button>
             <Button
               onClick={() => {
-                history.push("/signup1");
+                history.push("/signup");
               }}
               color="inherit"
             >
