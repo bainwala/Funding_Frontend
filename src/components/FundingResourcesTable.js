@@ -46,9 +46,7 @@ export default function FundingResourcesTable() {
     },
   ];
 
-  const [fundingResourcesTableRows, setFundingResourcesTableRows] = useState(
-    []
-  );
+  const [fundingResourcesTableRows, setFundingResourcesTableRows] = useState([]);
 
   const options = {
     // filterType: "checkbox",
