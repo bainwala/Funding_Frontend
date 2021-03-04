@@ -4,8 +4,10 @@ import MUIDataTable from "mui-datatables";
 import { useState, useEffect } from "react";
 import "../styles/FundingResourcesTable.css";
 import LoadingOverlay from "./LoadingOverlay";
+import { useHistory } from "react-router-dom";
 
 export default function FundingResourcesTable() {
+  let history = useHistory();
   const columns = [
     {
       label: "Source",
@@ -51,12 +53,12 @@ export default function FundingResourcesTable() {
   const options = {
     // filterType: "checkbox",
     selectableRows: "none",
-    customToolbar: ({ displayData }) => <Button>Add a resource</Button>,
+    customToolbar: ({ displayData }) => <Button onClick = {() => history.push("/add")}>Add a resource</Button>,
   };
 
   useEffect(() => {
     axios
-      .get("https://mysterious-mountain-11370.herokuapp.com/resource", {
+      .get("https://frozen-tor-16945.herokuapp.com/resource", {
         withCredentials: true,
       })
       .then((response) => {
