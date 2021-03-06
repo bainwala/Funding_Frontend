@@ -6,6 +6,7 @@ import "../styles/FundingResourcesTable.css";
 import LoadingOverlay from "./LoadingOverlay";
 
 export default function FundingResourcesTable() {
+  
   const columns = [
     {
       label: "Source",
@@ -55,12 +56,14 @@ export default function FundingResourcesTable() {
   };
 
   useEffect(() => {
+    
     axios
-      .get("https://mysterious-mountain-11370.herokuapp.com/resource", {
-        withCredentials: true,
+      .get("https://frozen-tor-16945.herokuapp.com/resource", {
+        withCredentials: true
       })
       .then((response) => {
         setFundingResourcesTableRows(response.data);
+        console.log(response.data);
       })
       .catch((err) => {
         console.error(err);

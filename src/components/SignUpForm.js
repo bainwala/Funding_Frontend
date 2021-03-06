@@ -6,6 +6,8 @@ import TextField from "@material-ui/core/TextField";
 import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
+import FundingResourcesTable from "./FundingResourcesTable";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -42,7 +44,7 @@ export default function SignUpForm() {
 
     axios
       .post(
-        "http://localhost:3001/registrations",
+        "https://frozen-tor-16945.herokuapp.com/registrations",
         {
           user: {
             email: email,
@@ -59,7 +61,6 @@ export default function SignUpForm() {
         console.log("registration error", error);
       });
   };
-
   return (
     <Container className={classes.container} maxWidth="xs">
       <form onSubmit={handleSubmit}>
