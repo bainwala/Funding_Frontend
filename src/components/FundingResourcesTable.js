@@ -7,7 +7,11 @@ import LoadingOverlay from "./LoadingOverlay";
 import { useHistory } from "react-router-dom";
 
 export default function FundingResourcesTable() {
+<<<<<<< HEAD
   let history = useHistory();
+=======
+  
+>>>>>>> 751f8befc4f840ab3781491ded2202d15d44f6d3
   const columns = [
     {
       label: "Source",
@@ -57,12 +61,18 @@ export default function FundingResourcesTable() {
   };
 
   useEffect(() => {
+    
     axios
       .get("https://frozen-tor-16945.herokuapp.com/resource", {
+<<<<<<< HEAD
         withCredentials: true,
+=======
+        withCredentials: true
+>>>>>>> 751f8befc4f840ab3781491ded2202d15d44f6d3
       })
       .then((response) => {
         setFundingResourcesTableRows(response.data);
+        console.log(response.data);
       })
       .catch((err) => {
         console.error(err);
