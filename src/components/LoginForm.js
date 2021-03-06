@@ -4,6 +4,12 @@ import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
+import {Redirect} from "react-router-dom";
+import axios from "axios";
+import { useState } from "react";
+import ButtonAppBar from "./Navbar";
+import PropTypes from 'prop-types'
+import {userContext} from '../util/userContext.js'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -15,53 +21,103 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LoginForm() {
+export default function LoginForm({updateUserData, user}) {
   const classes = useStyles();
+  const res = null;
+  const [LoginFormData, setLoginFormData] = useState({
+    email: "",
+    password: ""
+  });
+
+
+  const handleChange = (e) => {
+    const tempObj = {};
+    tempObj[e.target.name] = e.target.value;
+    setLoginFormData((prev) => Object.assign(prev, tempObj));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const { email, password } = LoginFormData;
+
+    console.log(email, password);
+
+    axios
+      .post(
+        "https://frozen-tor-16945.herokuapp.com/sessions",
+        {
+          user: {
+            email: email,
+            password: password
+          },
+        },
+        { withCredentials: true, 
+          credentials: 'same-origin'
+        }
+      )
+      .then((response) => {
+        console.log("registration res", response);
+        updateUserData(response.data)
+      })
+      .catch((error) => {
+        console.log("registration error", error);
+      });
+    }
 
   return (
-    <Container className={classes.container} maxWidth="xs">
-      <form>
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <Grid container spacing={2}>
+    <userContext.Consumer>
+      {(user) => (
+        <Container className={classes.container} maxWidth="xs">
+          <form onSubmit={handleSubmit}>
+            <Grid container spacing={3}>
               <Grid item xs={12}>
-                <TextField
-                  fullWidth
-                  label="Email"
-                  name="email"
-                  size="small"
-                  variant="outlined"
-                  required={true}
-                />
+                <Grid container spacing={2}>
+                  <Grid item xs={12}>
+                    <TextField
+                      fullWidth
+                      label="Email"
+                      name="email"
+                      size="small"
+                      variant="outlined"
+                      required={true}
+                      onChange={handleChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      fullWidth
+                      label="Password"
+                      name="password"
+                      size="small"
+                      type="password"
+                      variant="outlined"
+                      required={true}
+                      onChange={handleChange}
+                    />
+                  </Grid>
+                </Grid>
               </Grid>
               <Grid item xs={12}>
-                <TextField
+                <Button
+                  color="secondary"
                   fullWidth
-                  label="Password"
-                  name="password"
-                  size="small"
-                  type="password"
-                  variant="outlined"
-                  required={true}
-                />
+                  type="submit"
+                  variant="contained"
+                >
+                  Log in
+                </Button>
               </Grid>
             </Grid>
-          </Grid>
-          <Grid item xs={12}>
-            <Button
-              color="secondary"
-              fullWidth
-              type="submit"
-              variant="contained"
-            >
-              Log in
-            </Button>
-          </Grid>
-        </Grid>
-        <div style={{ marginTop: "1em" }}>
-          Don't have an account? <Link to="/signup">Create one now.</Link>
-        </div>
-      </form>
-    </Container>
+            <div style={{ marginTop: "1em" }}>
+              Don't have an account? <Link to="/signup">Create one now.</Link>
+            </div>
+          </form>
+          {user.logged_in ?  
+            <Redirect to='/'/>:
+            null
+          }
+        </Container>
+      )}</userContext.Consumer>
   );
 }
