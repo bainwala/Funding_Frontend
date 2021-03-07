@@ -27,7 +27,7 @@ export default function App() {
       )
       .then((response) => {
         console.log("registration res", response);
-        updateUserContext(response);
+        updateUserContext(response.data);
         console.log(user);
       })
       .catch((error) => {
