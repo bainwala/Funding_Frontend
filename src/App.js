@@ -1,6 +1,7 @@
 import FundingResourcesTable from "./components/FundingResourcesTable";
 import Navbar from "./components/Navbar";
 import LoginForm from "./components/LoginForm";
+import Logout from "./components/Logout";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import SignUpForm from "./components/SignUpForm";
 import "./styles/App.css";
@@ -26,7 +27,7 @@ export default function App() {
       )
       .then((response) => {
         console.log("registration res", response);
-        updateUserContext(response.data);
+        updateUserContext(response);
         console.log(user);
       })
       .catch((error) => {
@@ -41,6 +42,7 @@ export default function App() {
         <Switch>
           <Route exact path="/" component={() => <FundingResourcesTable updateUserData = {updateUserContext}/>}></Route>
           <Route exact path="/login" component={() => <LoginForm updateUserData = {updateUserContext} />}></Route>
+          <Route exact path="/logout" component={() => <Logout/>}></Route>
           <Route exact path="/signup" component={() => <SignUpForm updateUserData = {updateUserContext}/>}></Route>
           <Route path="/" render={() => <div>404</div>} />
         </Switch>

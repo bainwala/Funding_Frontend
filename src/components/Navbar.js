@@ -49,7 +49,7 @@ export default function ButtonAppBar() {
                 <div className={classes.menuItems}>
                   <Button
                     onClick={() => {
-                      history.push("/"); //logout logic missing
+                      history.push("/logout");
                     }}
                     color="inherit"
                   >
