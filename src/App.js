@@ -42,7 +42,7 @@ export default function App() {
         <Switch>
           <Route exact path="/" component={() => <FundingResourcesTable updateUserData = {updateUserContext}/>}></Route>
           <Route exact path="/login" component={() => <LoginForm updateUserData = {updateUserContext} />}></Route>
-          <Route exact path="/logout" component={() => <Logout/>}></Route>
+          <Route exact path="/logout" component={() => <Logout updateUserData = {updateUserContext} />}></Route>
           <Route exact path="/signup" component={() => <SignUpForm updateUserData = {updateUserContext}/>}></Route>
           <Route path="/" render={() => <div>404</div>} />
         </Switch>
