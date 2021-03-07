@@ -27,6 +27,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const deleteSession = () => {
+  let history = useHistory();
+  axios
+        .delete(
+          "https://frozen-tor-16945.herokuapp.com/logout",
+          { withCredentials: true }
+        )
+        .then((response) => {
+          console.log("logout res", response);
+          updateUserData({
+            logged_in: false,
+            user:{}
+          });
+          history.push("/logout");
+        })
+        .catch((error) => {
+          console.log("logout error", error);
+        });
+}
+
 export default function ButtonAppBar() {
   const classes = useStyles();
   let history = useHistory();
@@ -48,9 +68,7 @@ export default function ButtonAppBar() {
               {user.logged_in ? (
                 <div className={classes.menuItems}>
                   <Button
-                    onClick={() => {
-                      history.push("/logout");
-                    }}
+                    onClick={deleteSession}
                     color="inherit"
                   >
                     Logout

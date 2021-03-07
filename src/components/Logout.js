@@ -23,26 +23,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function Logout({updateUserData}){
+export default function Logout(){
   const classes = useStyles();
   let history = useHistory();
-
-  useEffect(() => {
-    axios
-        .delete(
-          "https://frozen-tor-16945.herokuapp.com/logout",
-          { withCredentials: true }
-        )
-        .then((response) => {
-          console.log("logout res", response);
-          updateUserData({
-            logged_in: false
-          });
-        })
-        .catch((error) => {
-          console.log("logout error", error);
-        });
-      },[]);
 
   return (
     <container>

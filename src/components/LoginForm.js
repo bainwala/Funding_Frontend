@@ -57,11 +57,11 @@ export default function LoginForm({updateUserData, user}) {
         }
       )
       .then((response) => {
-        console.log("registration res", response);
+        console.log("login res", response);
         updateUserData(response.data)
       })
       .catch((error) => {
-        console.log("registration error", error);
+        console.log("login error", error);
       });
     }
 
