@@ -5,14 +5,11 @@ import Logout from "./components/Logout";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import SignUpForm from "./components/SignUpForm";
 import "./styles/App.css";
-<<<<<<< HEAD
-import Registration from "./components/auth/Registration";
-import AddResource from "./components/AddResource"
-=======
 import {useState, useEffect} from 'react';
 import { userContext } from "./util/userContext";
 import axios from "axios";
->>>>>>> 751f8befc4f840ab3781491ded2202d15d44f6d3
+import AddResource from "./components/AddResource";
+
 
 export default function App() {
   const [user, setUser] = useState({})
@@ -22,7 +19,6 @@ export default function App() {
   }
 
   useEffect(() => {
-    console.log("Hello first");
     axios
       .get(
         "https://frozen-tor-16945.herokuapp.com/logged_in",
@@ -41,23 +37,11 @@ export default function App() {
   },[]);
   
   return (
-<<<<<<< HEAD
-    <BrowserRouter>
-      <Navbar />
-      <Switch>
-        <Route exact path="/" component={FundingResourcesTable}></Route>
-        <Route exact path="/login" component={LoginForm}></Route>
-        <Route exact path="/signup" component={SignUpForm}></Route>
-        <Route exact path="/signup1" component={Registration}></Route>
-        <Route exact path="/add" component={AddResource}></Route>
-        <Route path="/" render={() => <div>404</div>} />
-      </Switch>
-    </BrowserRouter>
-=======
     <userContext.Provider value={user}>
       <BrowserRouter>
         <Navbar updateUserData = {updateUserContext} />
         <Switch>
+          <Route exact path="/add" component={AddResource}></Route>
           <Route exact path="/" component={() => <FundingResourcesTable updateUserData = {updateUserContext}/>}></Route>
           <Route exact path="/login" component={() => <LoginForm updateUserData = {updateUserContext} />}></Route>
           <Route exact path="/logout" component={() => <Logout updateUserData = {updateUserContext} />}></Route>
@@ -66,6 +50,5 @@ export default function App() {
         </Switch>
       </BrowserRouter>
     </userContext.Provider>
->>>>>>> 751f8befc4f840ab3781491ded2202d15d44f6d3
   );
 }
