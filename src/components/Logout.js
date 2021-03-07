@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function Logout({updateUserContext}){
+export default function Logout({updateUserData}){
   const classes = useStyles();
   let history = useHistory();
 
@@ -35,7 +35,7 @@ export default function Logout({updateUserContext}){
         )
         .then((response) => {
           console.log("logout res", response);
-          updateUserContext({
+          updateUserData({
             logged_in: false
           });
         })
