@@ -26,19 +26,19 @@ export default function App() {
         }
       )
       .then((response) => {
-        console.log("registration res", response);
+        console.log("App res", response);
         updateUserContext(response.data);
         console.log(user);
       })
       .catch((error) => {
-        console.log("registration error", error);
+        console.log("app error", error);
       });
   },[]);
   
   return (
     <userContext.Provider value={user}>
       <BrowserRouter>
-        <Navbar/>
+        <Navbar updateUserData = {updateUserContext} />
         <Switch>
           <Route exact path="/" component={() => <FundingResourcesTable updateUserData = {updateUserContext}/>}></Route>
           <Route exact path="/login" component={() => <LoginForm updateUserData = {updateUserContext} />}></Route>

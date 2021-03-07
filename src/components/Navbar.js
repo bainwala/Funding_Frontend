@@ -6,6 +6,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import { userContext } from "../util/userContext.js";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,9 +28,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ButtonAppBar() {
+export default function ButtonAppBar({updateUserData}) {
   const classes = useStyles();
   let history = useHistory();
+
+  const deleteSession = () => {
+    axios
+          .delete(
+            "https://frozen-tor-16945.herokuapp.com/logout",
+            { withCredentials: true }
+          )
+          .then((response) => {
+            console.log("logout res", response);
+            updateUserData({
+              logged_in: false,
+              user:{}
+            });
+          })
+          .catch((error) => {
+            console.log("logout error", error);
+          });
+  }
 
   return (
     <userContext.Consumer>
@@ -49,6 +68,7 @@ export default function ButtonAppBar() {
                 <div className={classes.menuItems}>
                   <Button
                     onClick={() => {
+                      deleteSession();
                       history.push("/logout");
                     }}
                     color="inherit"
