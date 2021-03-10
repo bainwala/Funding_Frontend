@@ -4,10 +4,10 @@ import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
-import { useState, useHistory } from "react";
+import { useState } from "react";
 import axios from 'axios';
 import { userContext } from "../util/userContext";
-import  { Redirect } from 'react-router-dom';
+import  { Redirect, useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   container: {

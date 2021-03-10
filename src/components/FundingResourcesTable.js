@@ -7,7 +7,7 @@ import LoadingOverlay from "./LoadingOverlay";
 import { useHistory } from "react-router-dom";
 import { userContext } from "../util/userContext";
 
-export default function FundingResourcesTable({u}) {
+export default function FundingResourcesTable() {
   
   const columns = [
     {
