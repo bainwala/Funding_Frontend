@@ -51,7 +51,7 @@ export default function AddResource() {
     )
     .then(res => {
       console.log(res);
-      history.push("/");
+      useHistory().push("/");
     })
     .catch(err => {
       console.log(err)
@@ -60,7 +60,7 @@ export default function AddResource() {
 
   return (
     <userContext.Consumer>
-      {(user) => (!user ? useHistory().push("/") : (
+      {(user) => (
         <Container className={classes.container} maxWidth="xs">
         <form>
           <Grid container spacing={3}>
@@ -170,8 +170,7 @@ export default function AddResource() {
             </Grid>
           </Grid>
         </form>
-      </Container>) 
-    )}
+      </Container>)} 
     </userContext.Consumer>
   );
 }

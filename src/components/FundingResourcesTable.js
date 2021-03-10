@@ -7,7 +7,7 @@ import LoadingOverlay from "./LoadingOverlay";
 import { useHistory } from "react-router-dom";
 import { userContext } from "../util/userContext";
 
-export default function FundingResourcesTable() {
+export default function FundingResourcesTable({u}) {
   
   const columns = [
     {
@@ -56,9 +56,14 @@ export default function FundingResourcesTable() {
     // filterType: "checkbox",
     selectableRows: "none",
     customToolbar: ({ displayData }) => 
-      <Button onClick = {() => history.push("/add")}>
+    <userContext.Consumer>
+      {(user) => (
+      <Button 
+        onClick = {() => user ? history.push("/add") : history.push("/login")}>
         Add a resource
-      </Button>,
+      </Button>
+      )}
+    </userContext.Consumer>,
   };
 
   useEffect(() => {
