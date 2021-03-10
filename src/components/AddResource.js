@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function AddResource() {
-  let history = useHistory();
   const classes = useStyles();
   const [formData, setFormData] = useState({
       source: '',
@@ -61,7 +60,7 @@ export default function AddResource() {
 
   return (
     <userContext.Consumer>
-      {(user) => (!user ? (<Redirect to="/login" />) : (
+      {(user) => (!user ? useHistory().push("/") : (
         <Container className={classes.container} maxWidth="xs">
         <form>
           <Grid container spacing={3}>
