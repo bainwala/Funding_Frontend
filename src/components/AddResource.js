@@ -61,7 +61,7 @@ export default function AddResource() {
 
   return (
     <userContext.Consumer>
-      {(user) => (!user.logged_in ? (<Redirect to="/login" />) : (
+      {(user) => (!user ? (<Redirect to="/login" />) : (
         <Container className={classes.container} maxWidth="xs">
         <form>
           <Grid container spacing={3}>
