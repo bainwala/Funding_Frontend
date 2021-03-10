@@ -8,6 +8,8 @@ import "./styles/App.css";
 import {useState, useEffect} from 'react';
 import { userContext } from "./util/userContext";
 import axios from "axios";
+import AddResource from "./components/AddResource";
+
 
 export default function App() {
   const [user, setUser] = useState({})
@@ -17,7 +19,6 @@ export default function App() {
   }
 
   useEffect(() => {
-    console.log("Hello first");
     axios
       .get(
         "https://frozen-tor-16945.herokuapp.com/logged_in",
@@ -40,6 +41,7 @@ export default function App() {
       <BrowserRouter>
         <Navbar updateUserData = {updateUserContext} />
         <Switch>
+          <Route exact path="/add" component={AddResource}></Route>
           <Route exact path="/" component={() => <FundingResourcesTable updateUserData = {updateUserContext}/>}></Route>
           <Route exact path="/login" component={() => <LoginForm updateUserData = {updateUserContext} />}></Route>
           <Route exact path="/logout" component={() => <Logout updateUserData = {updateUserContext} />}></Route>
