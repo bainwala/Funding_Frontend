@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function AddResource() {
+  let history = useHistory();
   const classes = useStyles();
   const [formData, setFormData] = useState({
       source: '',
@@ -51,7 +52,7 @@ export default function AddResource() {
     )
     .then(res => {
       console.log(res);
-      useHistory().push("/");
+      history.push("/");
     })
     .catch(err => {
       console.log(err)
