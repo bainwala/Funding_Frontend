@@ -59,7 +59,7 @@ export default function FundingResourcesTable() {
     <userContext.Consumer>
       {(user) => (
       <Button 
-        onClick = {() => user ? history.push("/add") : history.push("/login")}>
+        onClick = {() => user.logged_in ? history.push("/add") : history.push("/login")}>
         Add a resource
       </Button>
       )}
