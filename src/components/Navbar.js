@@ -69,7 +69,7 @@ export default function ButtonAppBar({updateUserData}) {
                   <Button
                     onClick={() => {
                       deleteSession();
-                      history.push("/logout");
+                      history.push("/");
                     }}
                     color="inherit"
                   >

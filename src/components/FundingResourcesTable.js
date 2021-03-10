@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import "../styles/FundingResourcesTable.css";
 import LoadingOverlay from "./LoadingOverlay";
 import { useHistory } from "react-router-dom";
+import { userContext } from "../util/userContext";
 
 export default function FundingResourcesTable() {
   
@@ -54,7 +55,10 @@ export default function FundingResourcesTable() {
   const options = {
     // filterType: "checkbox",
     selectableRows: "none",
-    customToolbar: ({ displayData }) => <Button onClick = {() => history.push("/add")}>Add a resource</Button>,
+    customToolbar: ({ displayData }) => 
+      <Button onClick = {() => history.push("/add")}>
+        Add a resource
+      </Button>,
   };
 
   useEffect(() => {

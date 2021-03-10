@@ -4,9 +4,10 @@ import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useHistory } from "react";
 import axios from 'axios';
 import { userContext } from "../util/userContext";
+import  { Redirect } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -19,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function AddResource() {
+  let history = useHistory();
   const classes = useStyles();
   const [formData, setFormData] = useState({
       source: '',
@@ -37,7 +39,7 @@ export default function AddResource() {
       setFormData({...formData, [e.target.id]: e.target.value})
   }
 
-  function handleSubmit(e, user) {
+  function handleSubmit(e) {
     e.preventDefault()
     axios
     .post(
@@ -50,6 +52,7 @@ export default function AddResource() {
     )
     .then(res => {
       console.log(res);
+      history.push("/");
     })
     .catch(err => {
       console.log(err)
@@ -58,117 +61,117 @@ export default function AddResource() {
 
   return (
     <userContext.Consumer>
-      {(user) => (
+      {(user) => (!user.logged_in ? (<Redirect to="/login" />) : (
         <Container className={classes.container} maxWidth="xs">
-          <form>
-            <Grid container spacing={3}>
-              <Grid item xs={12}>
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <TextField
-                      fullWidth
-                      label="Source"
-                      id="source"
-                      size="small"
-                      variant="outlined"
-                      required={true}
-                      onChange = {handleChange}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      fullWidth
-                      label="Funding Name"
-                      id="funding_name"
-                      size="small"
-                      variant="outlined"
-                      required={true}
-                      onChange = {handleChange}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      fullWidth
-                      label="Description"
-                      id="decription"
-                      size="medium"
-                      variant="outlined"
-                      required={true}
-                      onChange = {handleChange}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      fullWidth
-                      label="Amount"
-                      id="amount"
-                      size="small"
-                      variant="outlined"
-                      required={false}
-                      onChange = {handleChange}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      fullWidth
-                      label="Contact Person"
-                      id="contact_person"
-                      size="small"
-                      variant="outlined"
-                      required={true}
-                      onChange = {handleChange}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      fullWidth
-                      label="Website Address"
-                      id="web"
-                      size="small"
-                      variant="outlined"
-                      required={false}
-                      onChange = {handleChange}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      fullWidth
-                      label="Eligible"
-                      id="eligible"
-                      size="small"
-                      variant="outlined"
-                      required={false}
-                      onChange = {handleChange}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      fullWidth
-                      label="Deadline"
-                      id="deadline"
-                      size="small"
-                      variant="outlined"
-                      required={false}
-                      onChange = {handleChange}
-                    />
-                  </Grid>
+        <form>
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    label="Source"
+                    id="source"
+                    size="small"
+                    variant="outlined"
+                    required={true}
+                    onChange = {handleChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    label="Funding Name"
+                    id="funding_name"
+                    size="small"
+                    variant="outlined"
+                    required={true}
+                    onChange = {handleChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    label="Description"
+                    id="decription"
+                    size="medium"
+                    variant="outlined"
+                    required={true}
+                    onChange = {handleChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    label="Amount"
+                    id="amount"
+                    size="small"
+                    variant="outlined"
+                    required={false}
+                    onChange = {handleChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    label="Contact Person"
+                    id="contact_person"
+                    size="small"
+                    variant="outlined"
+                    required={true}
+                    onChange = {handleChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    label="Website Address"
+                    id="web"
+                    size="small"
+                    variant="outlined"
+                    required={false}
+                    onChange = {handleChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    label="Eligible"
+                    id="eligible"
+                    size="small"
+                    variant="outlined"
+                    required={false}
+                    onChange = {handleChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    label="Deadline"
+                    id="deadline"
+                    size="small"
+                    variant="outlined"
+                    required={false}
+                    onChange = {handleChange}
+                  />
                 </Grid>
               </Grid>
-              <Grid item xs={12}>
-                <Button
-                  color="secondary"
-                  fullWidth
-                  type="submit"
-                  variant="contained" 
-                  value="Submit"
-                  onClick = {handleSubmit}
-                >
-                  Submit
-                </Button>
-              </Grid>
             </Grid>
-          </form>
-        </Container>
+            <Grid item xs={12}>
+              <Button
+                color="secondary"
+                fullWidth
+                type="submit"
+                variant="contained" 
+                value="Submit"
+                onClick = {handleSubmit}
+              >
+                Submit
+              </Button>
+            </Grid>
+          </Grid>
+        </form>
+      </Container>) 
     )}
     </userContext.Consumer>
   );
