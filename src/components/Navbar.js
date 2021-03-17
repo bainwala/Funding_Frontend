@@ -64,20 +64,29 @@ export default function ButtonAppBar({updateUserData}) {
                   history.push("/");
                 }}
               ></img>
+              <div className={classes.menuItems}>
+              {user.logged_in && user.user.is_admin ? (
+                <Button
+                  onClick={() => {
+                    history.push("/admin");
+                  }}
+                  color="inherit"
+                >
+                  Admin
+                </Button>
+              ):(null)}
               {user.logged_in ? (
-                <div className={classes.menuItems}>
-                  <Button
-                    onClick={() => {
-                      deleteSession();
-                      history.push("/");
-                    }}
-                    color="inherit"
-                  >
-                    Logout
-                  </Button>
-                </div>
+                <Button
+                  onClick={() => {
+                    deleteSession();
+                    history.push("/");
+                  }}
+                  color="inherit"
+                >
+                  Logout
+                </Button>
               ) : (
-                <div className={classes.menuItems}>
+                <div>
                   <Button
                     onClick={() => {
                       history.push("/login");
@@ -94,8 +103,9 @@ export default function ButtonAppBar({updateUserData}) {
                   >
                     Sign Up
                   </Button>
-                </div>
+                  </div>
               )}
+              </div>
             </Toolbar>
           </AppBar>
         </div>

@@ -9,14 +9,16 @@ import {useState, useEffect} from 'react';
 import { userContext } from "./util/userContext";
 import axios from "axios";
 import AddResource from "./components/AddResource";
-
+import Admin from "./components/Admin";
 
 export default function App() {
   const [user, setUser] = useState({})
   
+
   const updateUserContext = (userData) => {
     setUser(userData)
   }
+
 
   useEffect(() => {
     axios
@@ -33,7 +35,7 @@ export default function App() {
       })
       .catch((error) => {
         console.log("app error", error);
-      });
+      }); 
   },[]);
   
   return (
@@ -41,6 +43,7 @@ export default function App() {
       <BrowserRouter>
         <Navbar updateUserData = {updateUserContext} />
         <Switch>
+          <Route exact path="/admin" component={Admin }></Route>
           <Route exact path="/add" component={AddResource}></Route>
           <Route exact path="/" component={() => <FundingResourcesTable updateUserData = {updateUserContext}/>}></Route>
           <Route exact path="/login" component={() => <LoginForm updateUserData = {updateUserContext} />}></Route>
