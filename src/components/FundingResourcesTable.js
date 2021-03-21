@@ -42,7 +42,7 @@ export default function FundingResourcesTable() {
       label: "Web Address",
       name: "web",
       options: {
-        customBodyRender: (value, tableMeta, updateValue) => (
+        customBodyRender: (value, tableMeta, updateValue) => (//make div and add buttons to approve and delete for admin
           <a href={value}>Official website</a>
         ),
       },

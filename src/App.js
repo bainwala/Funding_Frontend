@@ -10,6 +10,7 @@ import { userContext } from "./util/userContext";
 import axios from "axios";
 import AddResource from "./components/AddResource";
 import Admin from "./components/Admin";
+import FileViewModal from "./components/FileViewModal";
 
 export default function App() {
   const [user, setUser] = useState({})
