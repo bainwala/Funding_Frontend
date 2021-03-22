@@ -97,60 +97,76 @@ export default function Admin() {
   }, []);
 
   return (
-    <>
-      <div className="container mt-5">
+    <div className="container border border-danger pb-3 mt-4">
+      <div className="container text-center mt-5">
         <h1>All Unapproved Resources</h1>
       </div>
-      {unapprovedResources.map((row) => (
+      {unapprovedResources.length>0 ? 
+        (unapprovedResources.map((row) => (
+            <div className="container mt-5">
+              <Grid container spacing={3}>
+                <Grid item xs={12}>
+                  <Paper className={classes.paper}>
+                    <div key={row.id}>
+                      <h5><b>Name: </b>{row.funding_name}</h5>
+                      <h5><b>Amount: </b>{row.amount}</h5>
+                    </div>
+                  </Paper>
+                </Grid>
+              </Grid>
+
+              <Button
+                variant="contained" 
+                color="primary" 
+                className={classes.button} 
+                startIcon={<ViewAgendaIcon/>}
+                onClick={() => {
+                  setModalShow(true)
+                  setModalInfo(row)
+                }}
+              >
+                View
+              </Button>
+              <FileViewModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+                info={modalInfo}
+              />
+              <Button
+                variant="contained"
+                className={classes.approve}
+                endIcon={<SendIcon/>}
+                onClick={() => {
+                  toggleApprove(row.id);
+                }}>
+                Approve
+              </Button>
+              
+              <Button 
+                variant="contained" 
+                color="secondary" 
+                className={classes.button} 
+                startIcon={<DeleteIcon/>} 
+                onClick={() => {
+                  toggleDelete(row.id);
+                }}>
+                Delete
+              </Button>
+            </div>
+        ))
+      ):(
           <div className="container mt-5">
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <Paper className={classes.paper}>
-                  <h5 key={row.id}><b>Name: </b>{row.funding_name}</h5>
-                  <h5 key={row.id}><b>Amount: </b>{row.amount}</h5>
+                  <div>
+                    <h5>You do not have any unapproved resources yet!</h5>
+                  </div>
                 </Paper>
               </Grid>
             </Grid>
-
-            <Button
-              variant="contained" 
-              color="primary" 
-              className={classes.button} 
-              startIcon={<ViewAgendaIcon/>}
-              onClick={() => {
-                setModalShow(true)
-                setModalInfo(row)
-              }}
-            >
-              View
-            </Button>
-            <FileViewModal
-              show={modalShow}
-              onHide={() => setModalShow(false)}
-              info={modalInfo}
-            />
-            <Button
-              variant="contained"
-              className={classes.approve}
-              endIcon={<SendIcon/>}
-              onClick={() => {
-                toggleApprove(row.id);
-              }}>
-              Approve
-            </Button>
-            
-            <Button 
-              variant="contained" 
-              color="secondary" 
-              className={classes.button} 
-              startIcon={<DeleteIcon/>} 
-              onClick={() => {
-                toggleDelete(row.id);
-              }}>
-              Delete
-            </Button>
           </div>
-      ))}
-    </>
+      )}
+    </div>
   );
 }
