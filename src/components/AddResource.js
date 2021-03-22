@@ -93,7 +93,7 @@ export default function AddResource() {
                   <TextField
                     fullWidth
                     label="Description"
-                    id="decription"
+                    id="description"
                     size="medium"
                     variant="outlined"
                     required={true}

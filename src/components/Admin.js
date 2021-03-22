@@ -97,7 +97,7 @@ export default function Admin() {
   }, []);
 
   return (
-    <div className="container border border-danger pb-3 mt-4">
+    <div className="container pb-3 mt-4">
       <div className="container text-center mt-5">
         <h1>All Unapproved Resources</h1>
       </div>
