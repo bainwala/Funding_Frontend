@@ -2,6 +2,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from "@material-ui/core/Button";
 
 export default function FileViewModal(props) {
+
     return (
       <Modal
         {...props}
@@ -15,7 +16,7 @@ export default function FileViewModal(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h4>{props.name}</h4>
+          <h4>{props.info.funding_name}</h4>
           <p>{JSON.stringify(props.info, null, 2)}
           </p>
         </Modal.Body>

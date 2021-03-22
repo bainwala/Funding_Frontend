@@ -1,10 +1,40 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import FileViewModal from "./FileViewModal"
+import Button from '@material-ui/core/Button';
+import DeleteIcon from '@material-ui/icons/Delete';
+import { makeStyles } from '@material-ui/core/styles';
+import SendIcon from '@material-ui/icons/Send';
+import ViewAgendaIcon from '@material-ui/icons/ViewAgenda';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+
+const useStyles = makeStyles((theme) => ({
+  button: {
+    margin: theme.spacing(1),
+  },
+
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: "white",
+    backgroundColor: "#f50057"
+  },
+
+  approve: {
+    margin: theme.spacing(1),
+    backgroundColor: "green",
+    color: "white",
+    '&:hover': {backgroundColor: "darkgreen"}
+  }
+}));
 
 export default function Admin() {
   const [unapprovedResources, setUnapprovedResources] = useState([]);
   const [modalShow, setModalShow] = useState(false);
+  const [modalInfo, setModalInfo] = useState({});
+
+  const classes = useStyles();
 
   const getRequest = () => {
     axios
@@ -60,6 +90,7 @@ export default function Admin() {
       });
   }
 
+  
 
   useEffect(() => {
     getRequest();
@@ -67,41 +98,58 @@ export default function Admin() {
 
   return (
     <>
-      <h1>All Unapproved Resources</h1>
-      <h4>Funding Name___Amount</h4>
+      <div className="container mt-5">
+        <h1>All Unapproved Resources</h1>
+      </div>
       {unapprovedResources.map((row) => (
-        <div>
-          <p key={row.id}>
-            {row.funding_name}___________________________{row.amount}
-          </p>
-          <button
-            onClick={() => {
-              toggleApprove(row.id);
-            }}
-            background-color="red"
-          >
-            Approve
-          </button>
-          <button onClick={() => {
-            toggleDelete(row.id);
-          }} background-color="red">
-            Delete
-          </button>
-          <button
-            onClick={() => {
-              setModalShow(true)
-            }}
-            background-color="red"
-          >
-            View
-          </button>
-          <FileViewModal
-            show={modalShow}
-            onHide={() => setModalShow(false)}
-            name={row.funding_name}
-            info={row}
-          />
-        </div>
+          <div className="container mt-5">
+            <Grid container spacing={3}>
+              <Grid item xs={12}>
+                <Paper className={classes.paper}>
+                  <h5 key={row.id}><b>Name: </b>{row.funding_name}</h5>
+                  <h5 key={row.id}><b>Amount: </b>{row.amount}</h5>
+                </Paper>
+              </Grid>
+            </Grid>
+
+            <Button
+              variant="contained" 
+              color="primary" 
+              className={classes.button} 
+              startIcon={<ViewAgendaIcon/>}
+              onClick={() => {
+                setModalShow(true)
+                setModalInfo(row)
+              }}
+            >
+              View
+            </Button>
+            <FileViewModal
+              show={modalShow}
+              onHide={() => setModalShow(false)}
+              info={modalInfo}
+            />
+            <Button
+              variant="contained"
+              className={classes.approve}
+              endIcon={<SendIcon/>}
+              onClick={() => {
+                toggleApprove(row.id);
+              }}>
+              Approve
+            </Button>
+            
+            <Button 
+              variant="contained" 
+              color="secondary" 
+              className={classes.button} 
+              startIcon={<DeleteIcon/>} 
+              onClick={() => {
+                toggleDelete(row.id);
+              }}>
+              Delete
+            </Button>
+          </div>
       ))}
     </>
   );
