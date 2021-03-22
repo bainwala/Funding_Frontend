@@ -2,16 +2,6 @@ import Modal from 'react-bootstrap/Modal';
 import Button from "@material-ui/core/Button";
 
 export default function FileViewModal(props) {
-  
-  function stringCleanup(resource){
-    let arrNeeded = ["source", "funding_name", "description", "amount", "contact_person", "web", "eligible", "deadline"]
-    let prefinal = JSON.stringify(resource, arrNeeded, 2);
-    prefinal = prefinal.split("}").join("")
-    prefinal = prefinal.split("{").join("")
-    prefinal = prefinal.split("\"").join("")
-    let final = prefinal.split(",")
-    return final;
-  }
 
     return (
       <Modal
@@ -20,19 +10,23 @@ export default function FileViewModal(props) {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <Modal.Header closeButton className="py-2">
+        <Modal.Header closeButton className="py-2 border border-dark">
           <Modal.Title id="contained-modal-title-vcenter">
             Resource: {props.info.funding_name}
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <h4 className="mb-4">By: {props.info.source}</h4>
-          <h5>Details:</h5>
-          {(stringCleanup(props.info).map((e) =>
-            <p>{e}</p>
-          ))}
+        <Modal.Body className="border border-dark">
+          <h5 className="mb-4">Details:</h5>
+          <h6 className="my-4"><b>By: </b>{props.info.source}</h6>
+          <h6 className="my-4"><b>Name: </b>{props.info.funding_name}</h6>
+          <h6 className="my-4"><b>Description: </b>{props.info.funding_name}</h6>
+          <h6 className="my-4"><b>Amount Provided: </b>{props.info.funding_name}</h6>
+          <h6 className="my-4"><b>Contact Person: </b>{props.info.funding_name}</h6>
+          <h6 className="my-4"><b>Website: </b>{props.info.funding_name}</h6>
+          <h6 className="my-4"><b>Who's eligible? </b>{props.info.funding_name}</h6>
+          <h6 className="mt-4"><b>Deadline: </b>11:59 pm on {props.info.funding_name}</h6>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className="border border-dark">
           <Button 
             variant="contained" 
             color="secondary"
