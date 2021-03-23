@@ -82,7 +82,7 @@ export default function FundingResourcesTable() {
   }, []);
 
   if (fundingResourcesTableRows.length === 0)
-    return <LoadingOverlay width="50" fill="black" className="animate-spin" />;
+    return <LoadingOverlay/>;
   else {
     return <MUIDataTable
       title={"Find a funding resource that works for you!"}
