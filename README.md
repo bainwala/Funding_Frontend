@@ -10,9 +10,12 @@ I'm going to give a broad list of steps.
     - something like ```git clone <url of repo here>```
 3. run `npm start` in the app directory
 
+Note: The app right now heavily relies on cookie authentication, so something like incognito mode will stop the website from remembering your auth. Also the cookies seem to hold best in chrome.
+
 ## Future Tasks ##
 
 - The table UI is nice because it has built in filter and sorting. But it could be better. Why not write a custom <tr> tag that shows the most important columns and then links to another page/modal with all of the information about the resource? (We advocate for pagination in the frontend. Backend searching in rails is pretty clunky in our opinion with a gem like pgsearch)
+- So authentication. We are using a cookie approach. I think a JWT token approach would fix the majority of these problems we are having. Try this link for how to do this `https://fusionauth.io/blog/2020/06/11/building-protected-api-with-rails-and-jwt/`.
 - Some pages probably need to redesigned to be more user friendly / functional, both the add resource and admin pages jump to mind.
 - Give the whole website a more consistent UI (<- CSS).
 - Expand the admin page to also include the ability to make other users admins. (Backend team will needs to things to support this)
