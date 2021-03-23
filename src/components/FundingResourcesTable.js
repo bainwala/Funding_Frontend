@@ -23,7 +23,7 @@ export default function FundingResourcesTable() {
       name: "description",
     },
     {
-      label: "Max Grant Amount",
+      label: "Funding Range",
       name: "amount",
     },
     {
