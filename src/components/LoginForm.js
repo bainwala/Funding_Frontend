@@ -7,9 +7,7 @@ import { Link } from "react-router-dom";
 import {Redirect} from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
-import ButtonAppBar from "./Navbar";
-import PropTypes from 'prop-types'
-import {userContext} from '../util/userContext.js'
+import {userContext} from '../util/userContext.js';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -23,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LoginForm({updateUserData, user}) {
   const classes = useStyles();
-  const res = null;
   const [LoginFormData, setLoginFormData] = useState({
     email: "",
     password: ""
@@ -41,8 +38,6 @@ export default function LoginForm({updateUserData, user}) {
 
     const { email, password } = LoginFormData;
 
-    console.log(email, password);
-
     axios
       .post(
         "https://frozen-tor-16945.herokuapp.com/sessions",
@@ -52,12 +47,13 @@ export default function LoginForm({updateUserData, user}) {
             password: password
           },
         },
-        { withCredentials: true, 
+        { 
+          withCredentials: true, 
           credentials: 'same-origin'
         }
       )
       .then((response) => {
-        console.log("login res", response);
+        console.log("LoginForm.js sessions -> " + JSON.stringify(response.data, null, 2));
         updateUserData(response.data)
       })
       .catch((error) => {

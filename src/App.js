@@ -1,7 +1,6 @@
 import FundingResourcesTable from "./components/FundingResourcesTable";
 import Navbar from "./components/Navbar";
 import LoginForm from "./components/LoginForm";
-import Logout from "./components/Logout";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import SignUpForm from "./components/SignUpForm";
 import "./styles/App.css";
@@ -10,7 +9,6 @@ import { userContext } from "./util/userContext";
 import axios from "axios";
 import AddResource from "./components/AddResource";
 import Admin from "./components/Admin";
-import FileViewModal from "./components/FileViewModal";
 
 export default function App() {
   const [user, setUser] = useState({})
@@ -30,9 +28,8 @@ export default function App() {
         }
       )
       .then((response) => {
-        console.log("App res", response);
+        console.log("App.js logged_in -> " + JSON.stringify(response.data, null ,2));
         updateUserContext(response.data);
-        console.log(user);
       })
       .catch((error) => {
         console.log("app error", error);
@@ -48,7 +45,6 @@ export default function App() {
           <Route exact path="/add" component={AddResource}></Route>
           <Route exact path="/" component={() => <FundingResourcesTable updateUserData = {updateUserContext}/>}></Route>
           <Route exact path="/login" component={() => <LoginForm updateUserData = {updateUserContext} />}></Route>
-          <Route exact path="/logout" component={() => <Logout updateUserData = {updateUserContext} />}></Route>
           <Route exact path="/signup" component={() => <SignUpForm updateUserData = {updateUserContext}/>}></Route>
           <Route path="/" render={() => <div>404</div>} />
         </Switch>

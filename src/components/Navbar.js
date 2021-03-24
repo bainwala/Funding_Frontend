@@ -4,7 +4,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import React from "react";
 import { useHistory } from "react-router-dom";
-import PropTypes from "prop-types";
 import { userContext } from "../util/userContext.js";
 import axios from "axios";
 
@@ -39,7 +38,7 @@ export default function ButtonAppBar({updateUserData}) {
             { withCredentials: true }
           )
           .then((response) => {
-            console.log("logout res", response);
+            console.log("Navbar.js logout -> " + JSON.stringify(response, null, 2));
             updateUserData({
               logged_in: false,
               user:{}

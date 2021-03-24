@@ -6,8 +6,6 @@ import TextField from "@material-ui/core/TextField";
 import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Redirect } from "react-router-dom";
-import FundingResourcesTable from "./FundingResourcesTable";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -55,7 +53,7 @@ export default function SignUpForm() {
         { withCredentials: true }
       )
       .then((response) => {
-        console.log("registration res", response);
+        console.log("SignUpForm.js registrations -> " + JSON.stringify(response, null , 2));
       })
       .catch((error) => {
         console.log("registration error", error);

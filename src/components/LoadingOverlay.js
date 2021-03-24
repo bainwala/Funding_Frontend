@@ -12,7 +12,6 @@ const styles = {
 library.add(faYinYang);
 
 const Spinner = (props) => {
-  console.log('the spinner is spinning');
   return (
     <div style={styles}>
        <FontAwesomeIcon icon="yin-yang" spin size="6x"/>

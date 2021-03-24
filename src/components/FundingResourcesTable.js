@@ -67,14 +67,13 @@ export default function FundingResourcesTable() {
   };
 
   useEffect(() => {
-    
     axios
       .get("https://frozen-tor-16945.herokuapp.com/resource", {
         withCredentials: true
       })
       .then((response) => {
+        console.log("FundingResourcesTable.js resource -> " + JSON.stringify(response.data, null, 2));
         setFundingResourcesTableRows(response.data);
-        console.log(response.data);
       })
       .catch((err) => {
         console.error(err);

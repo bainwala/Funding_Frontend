@@ -42,9 +42,8 @@ export default function Admin() {
         withCredentials: true,
       })
       .then((response) => {
-        // setAdminData(response);
+        console.log('Admin.js admin/resource -> ' + JSON.stringify(response.data, null , 2));
         setUnapprovedResources(response.data);
-        console.log(unapprovedResources);
       })
       .catch((err) => {
         console.error(err);
@@ -63,9 +62,8 @@ export default function Admin() {
         }
       )
       .then((response) => {
+        console.log('Admin.js toggleApprove -> ' + JSON.stringify(response, null, 2));
         getRequest();
-        console.log(response.data);
-        console.log(unapprovedResources);
       })
       .catch((err) => {
         console.error(err);
@@ -81,9 +79,8 @@ export default function Admin() {
         }
       )
       .then((response) => {
+        console.log('Admin.js delete -> ' + JSON.stringify(response, null , 2));
         getRequest();
-        console.log(response.data);
-        console.log(unapprovedResources);
       })
       .catch((err) => {
         console.error(err);

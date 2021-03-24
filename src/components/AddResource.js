@@ -3,11 +3,10 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from 'axios';
 import { userContext } from "../util/userContext";
-import  { Redirect, useHistory } from 'react-router-dom';
+import  { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -51,7 +50,7 @@ export default function AddResource() {
       },
     )
     .then(res => {
-      console.log(res);
+      console.log('AddResource.js resource -> ' + res);
       history.push("/");
     })
     .catch(err => {
