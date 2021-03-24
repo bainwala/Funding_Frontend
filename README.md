@@ -1,6 +1,6 @@
 # README #
 
-Welcome to the Funding Resource Project Front End. The App is hosted on heroku here: `https://testy1123.herokuapp.com/`. 
+Welcome to the Funding Resource Project Front End. The App is hosted on heroku here: `https://cls-funding-resources.herokuapp.com/`. 
 
 ## Getting the App working locally ##
 
@@ -15,7 +15,7 @@ Note: The app right now heavily relies on cookie authentication, so something li
 ## Future Tasks ##
 
 - The table UI is nice because it has built in filter and sorting. But it could be better. Why not write a custom <tr> tag that shows the most important columns and then links to another page/modal with all of the information about the resource? (We advocate for pagination in the frontend. Backend searching in rails is pretty clunky in our opinion with a gem like pgsearch)
-- So authentication. We are using a cookie approach. I think a JWT token approach would fix the majority of these problems we are having. Try this link for how to do this `https://fusionauth.io/blog/2020/06/11/building-protected-api-with-rails-and-jwt/`.
+- So authentication. We are using a cookie approach. I think a JWT token approach would fix the majority of these problems we are having. Try this link for how to do this `https://fusionauth.io/blog/2020/06/11/building-protected-api-with-rails-and-jwt/`. Or simply improve the cookie approach we are already using. (see backend repo for suggestions)
 - Some pages probably need to redesigned to be more user friendly / functional, both the add resource and admin pages jump to mind.
 - Give the whole website a more consistent UI (<- CSS).
 - Expand the admin page to also include the ability to make other users admins. (Backend team will needs to things to support this)
